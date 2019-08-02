@@ -1,6 +1,8 @@
 package edu.mum.cs.cs425.studentmgmt;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -31,30 +33,33 @@ public class MyStudentMgmtAppApplication implements CommandLineRunner {
 	}
 
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+		//Task 1
 		Student s = new Student("000-61-0001", "Anna", "Lynn", "Galverston", 3.45f, LocalDate.of(2019, 4, 30));
 		Student savedStudent1 = saveStudent(s);
 		System.out.println("Saved Student: " + savedStudent1);
 		
+		//Task 2
 		Student s2 = new Student("000-61-0002", "Bob", "Lynn", "Smith",2.87f, LocalDate.of(2019, 5, 1));
-		Student savedStudent2 = saveStudent(s2);
-		System.out.println("Saved Student 2: " + savedStudent2);
-		
 		Transcript t1 = new Transcript ("BS Computer Science");
-		Transcript saveTransript1 = saveTranscript(t1);
-		System.out.println("Save Transcript 1: " + saveTransript1);
-		
 		s2.setTranscript(t1);
-		savedStudent2 = saveStudent(s2);
-		System.out.println("Saved Student 2 after set Transcript: " + savedStudent2.getTranscript());
+		Student savedStudent2 = saveStudent(s2);
+		System.out.println("Saved Student 2: " + savedStudent2 + " Transcript of Student 2: " +  savedStudent2.getTranscript());
 		
 		Classroom c1 = new Classroom("McLaughlin building", "M105");
+		Student s3 = new Student("000-61-0003", "Mary", "", "Lee",3.87f, LocalDate.of(2019, 5, 10));
+		Student s4 = new Student("000-61-0004", "Daisy", "", "Anna",3.70f, LocalDate.of(2019, 5, 14));
+		s3.setClassroom(c1);
+		s4.setClassroom(c1);
+		List<Student> students = new ArrayList<Student>();
+		students.add(s3);
+		students.add(s4);
+		c1.setStudents(students);
+		
 		Classroom savedClassroom1 = saveClassroom(c1);
 		System.out.println("Save Classroom 1: " + savedClassroom1);
-		
-		s2.setClassroom(c1);
-		savedStudent2 = saveStudent(s2);
-		System.out.println("Saved Student 2 after set Classroom: " + savedStudent2.getClassroom());
+		for (Student stu: students) {
+			System.out.println("Saved Students of class room c1:  " +stu);
+		}
 	}
 
 	Student saveStudent(Student s) {

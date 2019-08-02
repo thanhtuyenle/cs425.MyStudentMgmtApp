@@ -18,8 +18,8 @@ public class Transcript {
 	@Column(nullable = false)
 	private String degreeTitle;
 	
-//	@OneToOne(mappedBy = "transcript")
-//	private Student student;
+	@OneToOne(mappedBy = "transcript")
+	private Student student;
 	
 	public Transcript() {
 		super();
@@ -44,12 +44,12 @@ public class Transcript {
 		this.degreeTitle = degreeTitle;
 	}
 	
-//	public Student getStudent() {
-//		return student;
-//	}
-//	public void setStudent(Student student) {
-//		this.student = student;
-//	}
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 	@Override
 	public String toString() {
 		return "Transcript [transcriptId=" + transcriptId + ", degreeTitle=" + degreeTitle + "]";

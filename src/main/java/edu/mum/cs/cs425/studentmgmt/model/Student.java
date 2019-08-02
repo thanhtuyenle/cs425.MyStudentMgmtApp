@@ -2,6 +2,7 @@ package edu.mum.cs.cs425.studentmgmt.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Student {
 	 @Column(nullable=false)
 	private LocalDate dateOfEnrollment;
 	 
-	 @OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="transcript_fk")
 	private Transcript transcript;
 	 
